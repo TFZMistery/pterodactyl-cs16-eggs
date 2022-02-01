@@ -4,7 +4,7 @@
         "version": "PTDL_v1",
         "update_url": null
     },
-    "exported_at": "2022-01-14T16:48:42+01:00",
+    "exported_at": "2022-02-01T10:02:41+01:00",
     "name": "Counter-Strike 1.6 [Build 7559]",
     "author": "osobni@tfzmistery.cz",
     "description": null,
@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ubuntu:18.04'\r\napt -y update\r\napt -y --no-install-recommends install curl lib32gcc1 ca-certificates lib32z1\r\n\r\ncd \/mnt\/server\r\nwget http:\/\/cdn.tfzmistery.cz\/hlds7559.tar.gz\r\ntar xvf hlds7559.tar.gz\r\nmv -v \/mnt\/server\/hlds7559\/* \/mnt\/server\/\r\nrm -R hlds7559.tar.gz server\/ start.sh\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server",
+            "script": "#!\/bin\/bash\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ubuntu:18.04'\r\napt -y update\r\napt -y --no-install-recommends install curl lib32gcc1 ca-certificates lib32z1\r\n\r\ncd \/mnt\/server\r\nwget http:\/\/cdn.tfzmistery.cz\/hlds7559.tar.gz\r\ntar xvf hlds7559.tar.gz\r\nmv -v \/mnt\/server\/hlds7559\/* \/mnt\/server\/\r\nrm -R hlds7559.tar.gz server\/ start.sh \/hlds7559\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nchmod +x \/mnt\/server\/hlds_run\r\nexport HOME=\/mnt\/server",
             "container": "alpine:3.4",
             "entrypoint": "ash"
         }
